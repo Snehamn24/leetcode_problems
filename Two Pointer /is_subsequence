@@ -1,0 +1,46 @@
+Example 1:
+Input: s = "abc", t = "ahbgdc"
+Output: true
+
+Example 2:
+Input: s = "axc", t = "ahbgdc"
+Output: false
+
+Code in Python
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        if len(s) == 0:
+            return True
+        i = 0
+        j = 0
+        while i<len(s) and j<len(t):
+            if s[i] == t[j]:
+                i += 1
+                j += 1
+            else:
+                j += 1
+
+        if i!= len(s):
+            return False
+        else:
+            return True
+
+
+# time complexity is maximum size of the string 't':
+o(|t|)
+#space complexity o(1) constant only the two variables i and j
+
+#Other approaches
+def solve(i, j):
+    if i == len(s):
+        return True
+    if j == len(t):
+        return False
+
+    if s[i] == t[j]:
+        return solve(i+1, j+1)
+
+    return solve(i, j+1)
+
+Here the time complexity is o(|t1|)
+but the space complexity is o(|t1|) because of recursion stack.
