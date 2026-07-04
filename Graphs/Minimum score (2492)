@@ -1,0 +1,27 @@
+class Solution:
+    def minScore(self, n: int, roads: List[List[int]]) -> int:
+        # create a graph
+        graph = [[] for i in range(len(n+1))]
+        #[[],[],[],[],[]]
+
+        # as it is undirected we store both the values
+        for a,b,dist in roads:
+            graph[a].append((b,dist))
+            graph[b].append((a,dist))
+
+        # now we have not visited even one node so we need set to False and using the mul operator its is easy
+        visited = [False]*n+1
+
+        #initially answer is set to inf in python we set like float('inf') and for negative float('-inf')
+        ans = float('inf')
+
+        # we will use the DFS so we can traverse one part at a time to create def we define the function
+        def dfs(city):
+            no
+            visited[city] = True
+            for nei,dist in graph[city]:
+                ans = min(ans,dist)
+                if not visisted[nei]:
+                    dfs(nei)
+        dfs(1)
+        return ans
