@@ -1,0 +1,31 @@
+Example 1:
+
+Input: nums = [-1,2,1,-4], target = 1
+Output: 2
+Explanation: The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+Example 2:
+
+Input: nums = [0,0,0], target = 1
+Output: 0
+Explanation: The sum that is closest to the target is 0. (0 + 0 + 0 = 0).
+
+# Solution
+class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        nums.sort()
+        closest_target = nums[0]+nums[1]+nums[2]
+        for i in range(len(nums)-1):
+            # create the pointers
+            left = i+1
+            right = len(nums)-1
+            while left<right:
+                current_closest = nums[i]+nums[left]+nums[right]
+                if abs(target-current_closest) < abs(target-closest_target):
+                    closest_target = current_closest
+                if current_closest<target:
+                    left+=1
+                elif current_closest>target:
+                    right-=1
+                else:
+                    return current_closest
+        return closest_target
