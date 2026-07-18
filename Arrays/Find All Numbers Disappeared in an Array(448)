@@ -1,0 +1,30 @@
+Example 1:
+Input: nums = [4,3,2,7,8,2,3,1]
+Output: [5,6]
+
+Example 2:
+Input: nums = [1,1]
+Output: [2]
+
+# Solution
+class Solution:
+    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
+        disappear = []
+        # takeaway in operator with the sets works better than 'in' operator with the list
+        n = len(nums)
+        s = set(nums)
+        for i in range(1,n+1):
+            if i in s:
+                continue
+            else:
+                disappear.append(i)
+        return disappear
+
+# If we use the 'in' operator on the original list, it may cause TLE.
+# This is because checking 'x in list' searches the list element by element
+# until the value is found (or the list ends), which takes O(n) time.
+# Since this check is performed for every number from 1 to n, the overall
+# time complexity becomes O(n²).
+#
+# Using a set avoids this problem because 'x in set' uses hashing, so
+# membership checking takes approximately O(1) time on average.
